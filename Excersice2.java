@@ -2,7 +2,7 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
 
-public class MergeSort {
+public class Excersice2 {
 
     static class FastScanner {
         static BufferedReader br;
@@ -73,55 +73,8 @@ public class MergeSort {
     public static void main(String[] args) throws IOException {
         try (PrintWriter out = newOutput()) {
             FastScanner in = newInput();
-
-            int[] mem = new int[in.nextInt()];
-
-            for (int i = 0; i < mem.length; i++) {
-                mem[i] = in.nextInt();
-            }
-            StringBuilder sb = new StringBuilder();
-            for (int i: sort(mem,0, mem.length-1, out)
-                 ) {
-                sb.append(i+ " ");
-            }
-            out.println(sb.deleteCharAt(sb.length()-1));
         }
     }
 
-    public static int[] sort(int[] array, int li, int ri, PrintWriter output){
-        if (li == ri){
-            int[] out = {array[li]};
-            return out;
-        }
-        int split = li+ (ri-li)/2;
-        int[] left_array = sort(array, li, split, output);
-        int[] right_array= sort(array, split+1,ri, output);
-
-        int i= 0;
-        int j= 0;
-        int[] toReturn = new int[ri-li+1];
-        int ind =0;
-        while(i<left_array.length || j<right_array.length){
-            if(left_array[i]<= right_array[j]){
-                toReturn[ind++] = left_array[i++];
-            } else{
-                toReturn[ind++] = right_array[j++];
-            }
-            if (i== left_array.length){
-                while (j<right_array.length){
-                    toReturn[ind++] = right_array[j++];;
-                }
-                break;
-            }
-            if (j== right_array.length){
-                while (i<left_array.length){
-                    toReturn[ind++] = left_array[i++];
-                }
-                break;
-            }
-        }
-        output.format("%d %d %d %d%n",li+1, ri+1, toReturn[0], toReturn[toReturn.length-1]);
-        return toReturn;
-    }
 
 }
